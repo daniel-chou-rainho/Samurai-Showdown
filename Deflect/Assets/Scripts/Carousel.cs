@@ -39,12 +39,12 @@ public class Carousel : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(Shuffle(3, 3f, 7));
+        StartCoroutine(Shuffle(10, 3f, 5));
     }
 
     private IEnumerator Shuffle(int count, float interval, int positions)
     {
-        AngleDivision(positions, -90.0f, 90.0f);
+        AngleDivision(positions, -50.0f, 50.0f);
 
         for (int i = 0; i < count; i++)
         {

@@ -5498,7 +5498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerObject: {fileID: 1725504361}
   target: {fileID: 1532870144}
-  Cannonball: {fileID: 9170178537527353728, guid: 650c07b82e67ab445a16723d086bd093,
+  Cannonball: {fileID: 8687001349126996969, guid: 106cf408aa23a234c8c1af4154c95c00,
     type: 3}
   L1Cannons:
   - {fileID: 1185219053}
@@ -6059,6 +6059,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!1 &1643913862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1643913863}
+  - component: {fileID: 1643913864}
+  m_Layer: 7
+  m_Name: Blade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1643913863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643913862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 18.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2042271582}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1643913864
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643913862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 41, z: 4}
+  m_Center: {x: 0, y: 10, z: 0.5}
 --- !u!1 &1700170296
 GameObject:
   m_ObjectHideFlags: 0
@@ -7584,12 +7629,17 @@ PrefabInstance:
     - target: {fileID: 65133243845345342, guid: e22342e3def410440a9a42b2986e8b04,
         type: 3}
       propertyPath: m_Size.y
-      value: 60
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 65133243845345342, guid: e22342e3def410440a9a42b2986e8b04,
         type: 3}
       propertyPath: m_Size.z
-      value: 8
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 65133243845345342, guid: e22342e3def410440a9a42b2986e8b04,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e22342e3def410440a9a42b2986e8b04, type: 3}

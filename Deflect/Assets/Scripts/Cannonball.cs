@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Cannonball : MonoBehaviour
 {
-    private bool init = false;
     private Rigidbody rb;
     private Transform target;
-    private float velocity;
-    private float turn = 10;
+    private float speed;
 
-    public void Attack(Transform target, float holdTime, float velocity)
+    public void Attack(Transform target, float holdTime, float speed)
     {
         this.target = target;
-        this.velocity = velocity;
+        this.speed = speed;
         StartCoroutine(Hold(holdTime));
     }
 
@@ -21,19 +19,14 @@ public class Cannonball : MonoBehaviour
     {
         yield return new WaitForSeconds(holdTime);
         rb = gameObject.AddComponent<Rigidbody>();
-        init = true;
+        rb.useGravity = false;
+        Fly();
     }
 
-    private void FixedUpdate()
+    private void Fly()
     {
-        if (init)
-        {
-            rb.velocity = transform.forward * velocity;
-
-            var targetRot = Quaternion.LookRotation(target.position - transform.position);
-
-            rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, turn));
-        }
+        rb.velocity = (target.position - transform.position).normalized * speed;
+        Destroy(this.gameObject, 4.0f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,5 +36,10 @@ public class Cannonball : MonoBehaviour
             other.gameObject.GetComponent<Head>().TakeLife();
             Destroy(this.gameObject);
         }
+
+        //if (other.tag == "Blade")
+        //{
+        //    rb.useGravity = true;
+        //}
     }
 }
