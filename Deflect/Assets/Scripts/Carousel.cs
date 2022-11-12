@@ -9,6 +9,7 @@ public class Carousel : MonoBehaviour
     private Vector3 center;
     public Transform target;
     public GameObject Cannonball;
+    private bool running = false;
 
     // Levels
     public Cannon[] L1Cannons;
@@ -39,6 +40,9 @@ public class Carousel : MonoBehaviour
 
     public void StartGame()
     {
+        if (running) { return; }
+        running = true;
+
         StartCoroutine(Shuffle(10, 3f, 5));
     }
 
