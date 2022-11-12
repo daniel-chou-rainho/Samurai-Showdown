@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4267492719298455043}
   - component: {fileID: 4260075810550272750}
   - component: {fileID: 4260075810550272748}
-  - component: {fileID: 2661111932435255511}
   m_Layer: 0
   m_Name: Shuriken1
   m_TagString: Untagged
@@ -198,18 +197,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &2661111932435255511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4282816766707647889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03cf170cd61ed5c4d80017a54bb29d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8687001349126996969
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,3 +242,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b99c764ab764e4198db8beaf45f97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  srk: {fileID: 4285791156363755577}

@@ -69,7 +69,7 @@ public class Carousel : MonoBehaviour
             // Wait until rotation finish
             yield return new WaitForSeconds(interval);
 
-            Attack(1, 0.25f, 7f);
+            Attack(1, 0.40f, 8.5f);
             yield return new WaitForSeconds(0.5f);
         }
 
@@ -102,7 +102,7 @@ public class Carousel : MonoBehaviour
     }
 
     // Attack
-    private void Attack(int count, float holdTime, float velocity)
+    private void Attack(int count, float holdTime, float speed)
     {
         List<Transform> MuzzlesAvailable = new List<Transform>(Muzzles);
 
@@ -118,7 +118,7 @@ public class Carousel : MonoBehaviour
 
             // Launch Cannonball
             Cannonball cb = (Cannonball) ball.GetComponent(typeof(Cannonball));
-            cb.Attack(target, holdTime, velocity);
+            cb.Attack(target, holdTime, speed);
         }
     }
 

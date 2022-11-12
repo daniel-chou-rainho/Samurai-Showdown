@@ -7,6 +7,17 @@ public class Cannonball : MonoBehaviour
     private Rigidbody rb;
     private Transform target;
     private float speed;
+    private float rebound = 1.5f;
+
+    public Transform srk;
+    private float dps = 1000; // degrees/sec
+    private bool rotate = true;
+
+    private void Update()
+    {
+        if (!rotate) { return; }
+        srk.Rotate(0, dps * Time.deltaTime, 0);
+    }
 
     public void Attack(Transform target, float holdTime, float speed)
     {
@@ -20,6 +31,7 @@ public class Cannonball : MonoBehaviour
         yield return new WaitForSeconds(holdTime);
         rb = gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
+        rb.mass = 0.1f;
         Fly();
     }
 
@@ -37,9 +49,11 @@ public class Cannonball : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        //if (other.tag == "Blade")
-        //{
-        //    rb.useGravity = true;
-        //}
+        if (other.tag == "Blade")
+        {
+            rotate = false;
+            rb.useGravity = true;
+            rb.velocity = -rb.velocity / rebound;
+        }
     }
 }
