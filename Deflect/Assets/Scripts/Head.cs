@@ -16,7 +16,7 @@ public class Head : MonoBehaviour
             StartCoroutine(EndGame());
         } else {
             lifes--;
-            Debug.Log("Lifes = " + lifes.ToString());
+            //Debug.Log("Lifes = " + lifes.ToString());
         }
     }
 
