@@ -25,12 +25,12 @@ public class Head : MonoBehaviour
         Debug.Log("You died.");
 
         // Slow Motion
-        Time.timeScale = 0.1f;
-        yield return new WaitForSeconds(0.1f); // 1s
+        Time.timeScale = 0.2f;
+        yield return new WaitForSeconds(0.2f); // 1s
 
         // Fade
-        fader.FadeOut(0.1f);
-        yield return new WaitForSeconds(0.1f);
+        fader.FadeOut(0.2f);
+        yield return new WaitForSeconds(0.2f);
 
         // Normal Motion
         Time.timeScale = 1.0f;
