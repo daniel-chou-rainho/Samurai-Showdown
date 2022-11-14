@@ -50,8 +50,8 @@ public class Carousel : MonoBehaviour
         int nMin = 5, nMax = 15;
         int pMin = 5, pMax = 7;
         int xMin = 1, xMax = 5;
-        float tMin = 3.0f, tMax = 0.25f;
-        float aMin = 60.0f, aMax = 120.0f;
+        float tMin = 2.0f, tMax = 0.25f;
+        float aMin = 60.0f, aMax = 90.0f;
         float sMin = 5.0f, sMax = 10.0f;
 
         for (int r = 0; r < rounds; r++)

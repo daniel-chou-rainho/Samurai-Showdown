@@ -13,6 +13,11 @@ public class Cannonball : MonoBehaviour
     private float dps = 1000; // degrees/sec
     private bool rotate = true;
 
+    private void Start()
+    {
+        srk.Rotate(0, 0, 45 * Random.Range(0, 7));
+    }
+
     private void Update()
     {
         if (!rotate) { return; }
@@ -54,6 +59,9 @@ public class Cannonball : MonoBehaviour
             rotate = false;
             rb.useGravity = true;
             rb.velocity = -rb.velocity / rebound;
+
+            // Vibration
+            other.gameObject.GetComponent<HapticBlade>().Vibrate(0.1f, 0.1f);
         }
     }
 }

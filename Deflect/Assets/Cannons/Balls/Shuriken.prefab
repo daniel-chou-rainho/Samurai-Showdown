@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4260075810550272748}
   m_Layer: 0
   m_Name: Shuriken1
-  m_TagString: Untagged
+  m_TagString: Srk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4282816766707647889}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 6, z: 3}
+  m_LocalScale: {x: 2.25, y: 4.5, z: 2.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8687001349126996971}

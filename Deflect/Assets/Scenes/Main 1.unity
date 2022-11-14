@@ -2909,9 +2909,9 @@ MonoBehaviour:
   m_AudioClipForOnHoverExited: {fileID: 0}
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
-  m_PlayHapticsOnSelectEntered: 0
-  m_HapticSelectEnterIntensity: 0
-  m_HapticSelectEnterDuration: 0
+  m_PlayHapticsOnSelectEntered: 1
+  m_HapticSelectEnterIntensity: 0.2
+  m_HapticSelectEnterDuration: 0.2
   m_PlayHapticsOnSelectExited: 0
   m_HapticSelectExitIntensity: 0
   m_HapticSelectExitDuration: 0
@@ -6075,6 +6075,7 @@ GameObject:
   - component: {fileID: 1643913863}
   - component: {fileID: 1643913864}
   - component: {fileID: 1643913865}
+  - component: {fileID: 1643913866}
   m_Layer: 7
   m_Name: Blade
   m_TagString: Blade
@@ -6108,7 +6109,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 41, z: 5}
+  m_Size: {x: 0.6, y: 41, z: 3}
   m_Center: {x: 0, y: 10, z: 0.5}
 --- !u!65 &1643913865
 BoxCollider:
@@ -6121,8 +6122,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 50, z: 30}
-  m_Center: {x: 0, y: 15, z: 0.5}
+  m_Size: {x: 3, y: 43, z: 7.5}
+  m_Center: {x: 0, y: 11, z: 0.5}
+--- !u!114 &1643913866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643913862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0dae51327ae934789791c5fbe4ffa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  con: {fileID: 0}
 --- !u!1 &1700170296
 GameObject:
   m_ObjectHideFlags: 0
@@ -6927,9 +6941,9 @@ MonoBehaviour:
   m_AudioClipForOnHoverExited: {fileID: 0}
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
-  m_PlayHapticsOnSelectEntered: 0
-  m_HapticSelectEnterIntensity: 0
-  m_HapticSelectEnterDuration: 0
+  m_PlayHapticsOnSelectEntered: 1
+  m_HapticSelectEnterIntensity: 0.15
+  m_HapticSelectEnterDuration: 0.075
   m_PlayHapticsOnSelectExited: 0
   m_HapticSelectExitIntensity: 0
   m_HapticSelectExitDuration: 0
@@ -7808,6 +7822,7 @@ MonoBehaviour:
   m_AttachPointCompatibilityMode: 0
   leftAttachTransform: {fileID: 716051146}
   rightAttachTransform: {fileID: 972475803}
+  blade: {fileID: 1643913862}
 --- !u!54 &2042271584
 Rigidbody:
   m_ObjectHideFlags: 0
