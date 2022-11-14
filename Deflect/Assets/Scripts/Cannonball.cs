@@ -13,8 +13,18 @@ public class Cannonball : MonoBehaviour
     private float dps = 1000; // degrees/sec
     private bool rotate = true;
 
+    public AudioClip clip;
+    private AudioSource source;
+    public float minVelocity = 0f;
+    public float maxVelocity = 2.5f;
+    public float minVolume = 0.05f;
+    public float maxVolume = 0.1f;
+    public float minPitch = 0.8f;
+    public float maxPitch = 1.2f;
+
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         srk.Rotate(0, 0, 45 * Random.Range(0, 7));
     }
 
@@ -62,6 +72,22 @@ public class Cannonball : MonoBehaviour
 
             // Vibration
             other.gameObject.GetComponent<HapticBlade>().Vibrate(0.1f, 0.1f);
+
+            // SFX
+            VelocityEstimator estimator = other.GetComponent<VelocityEstimator>();
+            if(estimator)
+            {
+                // Volume based on blade speed
+                float v = estimator.GetVelocityEstimate().magnitude;
+                float diff = maxVolume - minVolume;
+                double volume = (double)Mathf.InverseLerp(minVelocity, maxVelocity, v) * (double)diff + (double)minVolume;
+                Debug.Log(volume);
+
+                // Random Pitch
+                source.pitch = Random.Range(minPitch, maxPitch);
+
+                source.PlayOneShot(clip, (float)volume);
+            }
         }
     }
 }

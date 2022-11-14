@@ -6076,6 +6076,7 @@ GameObject:
   - component: {fileID: 1643913864}
   - component: {fileID: 1643913865}
   - component: {fileID: 1643913866}
+  - component: {fileID: 1643913867}
   m_Layer: 7
   m_Name: Blade
   m_TagString: Blade
@@ -6122,7 +6123,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 43, z: 7.5}
+  m_Size: {x: 5, y: 43, z: 15}
   m_Center: {x: 0, y: 11, z: 0.5}
 --- !u!114 &1643913866
 MonoBehaviour:
@@ -6137,6 +6138,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   con: {fileID: 0}
+--- !u!114 &1643913867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643913862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa98c76e80f0e14db12e9b7f9535c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityAverageFrames: 5
+  angularVelocityAverageFrames: 11
+  estimateOnAwake: 1
 --- !u!1 &1700170296
 GameObject:
   m_ObjectHideFlags: 0
