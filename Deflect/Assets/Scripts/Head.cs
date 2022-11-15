@@ -8,15 +8,27 @@ public class Head : MonoBehaviour
     public int lifes;
     public Fader fader;
 
+    public AudioClip gong;
+    public AudioClip taiko;
+    private AudioSource source;
+    public float minPitch = 0.95f;
+    public float maxPitch = 1.05f;
+
+    private void Start()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
     public void TakeLife()
     {
-        // TODO: Damage SFX
+        source.pitch = Random.Range(minPitch, maxPitch);
 
-        if(lifes == 1){
+        if (lifes == 1){
+            source.PlayOneShot(gong);
             StartCoroutine(EndGame());
         } else {
+            source.PlayOneShot(taiko);
             lifes--;
-            //Debug.Log("Lifes = " + lifes.ToString());
         }
     }
 
