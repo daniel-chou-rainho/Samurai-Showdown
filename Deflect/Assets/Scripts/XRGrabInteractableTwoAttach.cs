@@ -11,8 +11,14 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
     public GameObject blade;
     private HapticBlade hb;
 
+    public AudioClip clip;
+    private AudioSource source;
+    public float minPitch = 0.9f;
+    public float maxPitch = 1.1f;
+
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         hb = blade.GetComponent<HapticBlade>();
     }
 
@@ -29,7 +35,11 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
 
         // Pass Controller
         if(args.interactorObject is XRBaseControllerInteractor controllerInteractor)
+        {
             hb.con = controllerInteractor.xrController;
+            source.pitch = Random.Range(minPitch, maxPitch);
+            source.PlayOneShot(clip); // Equip SFX
+        }
 
         base.OnSelectEntered(args);
     }
