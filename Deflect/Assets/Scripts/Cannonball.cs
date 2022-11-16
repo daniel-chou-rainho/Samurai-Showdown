@@ -7,7 +7,6 @@ public class Cannonball : MonoBehaviour
     private Rigidbody rb;
     private Transform target;
     private float speed;
-    private float rebound = 1.5f;
 
     public Transform srk;
     private float dps = 1000; // degrees/sec
@@ -68,25 +67,31 @@ public class Cannonball : MonoBehaviour
         {
             rotate = false;
             rb.useGravity = true;
-            rb.velocity = -rb.velocity / rebound;
+        }
+    }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Blade")
+        {
             // Vibration
             other.gameObject.GetComponent<HapticBlade>().Vibrate(0.1f, 0.1f);
 
-            // SFX
-            VelocityEstimator estimator = other.GetComponent<VelocityEstimator>();
-            if(estimator)
+            VelocityEstimator estimator = other.gameObject.GetComponent<VelocityEstimator>();
+            if (estimator)
             {
-                // Volume based on blade speed
                 float v = estimator.GetVelocityEstimate().magnitude;
+
+                // Velocity-based SFX
                 float diff = maxVolume - minVolume;
                 double volume = (double)Mathf.InverseLerp(minVelocity, maxVelocity, v) * (double)diff + (double)minVolume;
-                Debug.Log(volume);
-
-                // Random Pitch
                 source.pitch = Random.Range(minPitch, maxPitch);
-
                 source.PlayOneShot(clip, (float)volume);
+
+                // Velocity-based Rebound
+                Vector3 dir = rb.velocity;
+                dir = -dir.normalized;
+                GetComponent<Rigidbody>().AddForce(dir * v * 8);
             }
         }
     }
