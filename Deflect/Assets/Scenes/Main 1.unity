@@ -6032,6 +6032,8 @@ MonoBehaviour:
   taiko: {fileID: 8300000, guid: 42cca2619f712294caea8a5dde24c27f, type: 3}
   minPitch: 0.95
   maxPitch: 1.05
+  leftCon: {fileID: 758710028}
+  rightCon: {fileID: 1943490881}
 --- !u!82 &1532870147
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6211,8 +6213,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 41, z: 3}
-  m_Center: {x: 0, y: 10, z: 0.5}
+  m_Size: {x: 1.5, y: 42, z: 3}
+  m_Center: {x: 0, y: 10.5, z: 0.5}
 --- !u!65 &1643913865
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7737,7 +7739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4647056835423170, guid: e22342e3def410440a9a42b2986e8b04, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.76
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4647056835423170, guid: e22342e3def410440a9a42b2986e8b04, type: 3}
       propertyPath: m_LocalPosition.z
