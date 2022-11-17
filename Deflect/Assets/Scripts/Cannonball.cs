@@ -46,6 +46,7 @@ public class Cannonball : MonoBehaviour
         rb = gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
         rb.mass = 0.1f;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         Fly();
     }
 
