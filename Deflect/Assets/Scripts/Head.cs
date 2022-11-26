@@ -44,6 +44,11 @@ public class Head : MonoBehaviour
     {
         Debug.Log("You died.");
 
+        // Non-Complete Reset
+        Statics.startRound = Statics.startRound - 5;
+        if (Statics.startRound < 0)
+            Statics.startRound = 0;
+
         // Slow Motion
         Time.timeScale = 0.2f;
         yield return new WaitForSeconds(0.2f); // 1s

@@ -42,19 +42,23 @@ public class Carousel : MonoBehaviour
         if (running) { return; }
         running = true;
 
-        StartCoroutine(Dealer(30));
+        StartCoroutine(Dealer(50));
     }
 
     private IEnumerator Dealer(int rounds)
     {
-        int nMin = 5, nMax = 15;
+        int nMin = 3, nMax = 8;
         int pMin = 5, pMax = 7;
         int xMin = 1, xMax = 5;
-        float tMin = 2.0f, tMax = 0.25f;
+        float tMin = 1.75f, tMax = 0.25f;
         float aMin = 60.0f, aMax = 90.0f;
         float sMin = 5.0f, sMax = 10.0f;
 
-        for (int r = 0; r < rounds; r++)
+        // Complete Reset
+        if (Statics.startRound > rounds)
+            Statics.startRound = 0;
+
+        for (int r = Statics.startRound; r < rounds; r++)
         {
             Debug.Log("Round " + r.ToString());
 
@@ -67,6 +71,7 @@ public class Carousel : MonoBehaviour
             float s = LinScaleFloat(sMin, sMax, r, rounds);
 
             yield return StartCoroutine(Shuffle(n, t, p, a, x, s));
+            Statics.startRound++;
         }
     }
 
@@ -121,8 +126,8 @@ public class Carousel : MonoBehaviour
             // Wait until rotation finish
             yield return new WaitForSeconds(t);
 
-            Attack(x, 0.5f, s);
-            yield return new WaitForSeconds((float)x * 0.5f); // p1*p2
+            Attack(x, 0.75f, s);
+            yield return new WaitForSeconds((float)x * 0.75f); // p1*p2
         }
 
         Reset(t);
