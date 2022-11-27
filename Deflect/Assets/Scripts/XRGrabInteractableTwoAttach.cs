@@ -38,7 +38,7 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
         {
             hb.con = controllerInteractor.xrController;
             source.pitch = Random.Range(minPitch, maxPitch);
-            source.PlayOneShot(clip); // Equip SFX
+            source.PlayOneShot(clip, 0.1f); // Equip SFX
         }
 
         base.OnSelectEntered(args);

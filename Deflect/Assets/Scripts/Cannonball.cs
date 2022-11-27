@@ -12,7 +12,8 @@ public class Cannonball : MonoBehaviour
     private float dps = 1000; // degrees/sec
     private bool rotate = true;
 
-    public AudioClip clip;
+    public AudioClip metalClip;
+    public AudioClip poofClip;
     private AudioSource source;
     public float minVelocity = 0f;
     public float maxVelocity = 2.5f;
@@ -25,6 +26,10 @@ public class Cannonball : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         srk.Rotate(0, 0, 45 * Random.Range(0, 7));
+
+        // Smoke Poof SFX
+        source.pitch = Random.Range(minPitch, maxPitch);
+        source.PlayOneShot(poofClip, 0.6f);
     }
 
     private void Update()
@@ -87,7 +92,7 @@ public class Cannonball : MonoBehaviour
                 float diff = maxVolume - minVolume;
                 double volume = (double)Mathf.InverseLerp(minVelocity, maxVelocity, v) * (double)diff + (double)minVolume;
                 source.pitch = Random.Range(minPitch, maxPitch);
-                source.PlayOneShot(clip, (float)volume);
+                source.PlayOneShot(metalClip, (float)volume * 0.10f);
 
                 // Velocity-based Rebound
                 Vector3 dir = rb.velocity;

@@ -355,7 +355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   srk: {fileID: 4285791156363755577}
-  clip: {fileID: 8300000, guid: 7787e23776e07414a8784a5724e12b54, type: 3}
+  metalClip: {fileID: 8300000, guid: 7787e23776e07414a8784a5724e12b54, type: 3}
+  poofClip: {fileID: 8300000, guid: 1260fec3d18df7e4c94b52678bf42613, type: 3}
   minVelocity: 0
   maxVelocity: 2
   minVolume: 0.25
@@ -382,8 +383,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 4
+  MinDistance: 2
+  MaxDistance: 8
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
