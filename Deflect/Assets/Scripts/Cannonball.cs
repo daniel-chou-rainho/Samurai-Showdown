@@ -14,13 +14,14 @@ public class Cannonball : MonoBehaviour
 
     public AudioClip metalClip;
     public AudioClip poofClip;
+    public AudioClip whooshClip;
     private AudioSource source;
-    public float minVelocity = 0f;
-    public float maxVelocity = 2.5f;
-    public float minVolume = 0.05f;
-    public float maxVolume = 0.1f;
-    public float minPitch = 0.8f;
-    public float maxPitch = 1.2f;
+    private float minVelocity = 1.0f;
+    private float maxVelocity = 5.0f;
+    private float minVolume = 0.05f;
+    private float maxVolume = 0.1f;
+    private float minPitch = 0.9f;
+    private float maxPitch = 1.1f;
 
     private void Start()
     {
@@ -29,7 +30,9 @@ public class Cannonball : MonoBehaviour
 
         // Smoke Poof SFX
         source.pitch = Random.Range(minPitch, maxPitch);
-        source.PlayOneShot(poofClip, 0.6f);
+        source.volume = Random.Range(0.4f, 0.6f);
+        source.clip = poofClip;
+        source.Play();
     }
 
     private void Update()
@@ -59,10 +62,21 @@ public class Cannonball : MonoBehaviour
     {
         rb.velocity = (target.position - transform.position).normalized * speed;
         Destroy(this.gameObject, 4.0f);
+
+        // Whoosh SFX
+        source.loop = true;
+        source.clip = whooshClip;
+        source.volume = Random.Range(minVolume, maxVolume);
+        source.pitch = Random.Range(minPitch, maxPitch);
+        source.Play();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // Stop Whoosh SFX
+        source.Stop();
+        source.loop = false;
+
         if (other.tag == "Head")
         {
             other.gameObject.GetComponent<Head>().TakeLife();
@@ -92,7 +106,7 @@ public class Cannonball : MonoBehaviour
                 float diff = maxVolume - minVolume;
                 double volume = (double)Mathf.InverseLerp(minVelocity, maxVelocity, v) * (double)diff + (double)minVolume;
                 source.pitch = Random.Range(minPitch, maxPitch);
-                source.PlayOneShot(metalClip, (float)volume * 0.10f);
+                source.PlayOneShot(metalClip, (float)volume);
 
                 // Velocity-based Rebound
                 Vector3 dir = rb.velocity;
