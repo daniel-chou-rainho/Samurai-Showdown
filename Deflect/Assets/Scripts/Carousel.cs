@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Carousel : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Carousel : MonoBehaviour
     private Vector3 center;
     public Transform target;
     public GameObject Cannonball;
+    public TextMeshProUGUI scoreBoard;
     private bool running = false;
 
     // Levels
@@ -35,6 +37,7 @@ public class Carousel : MonoBehaviour
         CannonCollection();
         MuzzleCollection();
         center = centerObject.position;
+        scoreBoard.text = Statics.startRound.ToString();
     }
 
     public void StartGame()
@@ -72,6 +75,7 @@ public class Carousel : MonoBehaviour
 
             yield return StartCoroutine(Shuffle(n, t, p, a, x, s));
             Statics.startRound++;
+            scoreBoard.text = Statics.startRound.ToString();
         }
     }
 
