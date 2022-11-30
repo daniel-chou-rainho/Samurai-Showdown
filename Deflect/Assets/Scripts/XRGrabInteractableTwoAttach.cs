@@ -10,6 +10,7 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
 
     public GameObject blade;
     private HapticBlade hb;
+    private Rigidbody rb;
 
     public AudioClip clip;
     private AudioSource source;
@@ -20,6 +21,7 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
     {
         source = GetComponent<AudioSource>();
         hb = blade.GetComponent<HapticBlade>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -48,5 +50,6 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
     {
         // Reset
         hb.con = null;
+        rb.useGravity = true;
     }
 }
