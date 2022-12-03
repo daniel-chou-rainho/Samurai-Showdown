@@ -50,12 +50,14 @@ public class Carousel : MonoBehaviour
 
     private IEnumerator Dealer(int rounds)
     {
-        int nMin = 3, nMax = 8;
+        int nMin = 3, nMax = 5;
         int pMin = 5, pMax = 7;
         int xMin = 1, xMax = 5;
         float tMin = 1.75f, tMax = 0.25f;
         float aMin = 60.0f, aMax = 90.0f;
         float sMin = 5.0f, sMax = 10.0f;
+        float hMin = 1.0f, hMax = 0.75f;
+        float bMin = 1.0f, bMax = 0.75f;
 
         // Complete Reset
         if (Statics.startRound > rounds)
@@ -72,8 +74,10 @@ public class Carousel : MonoBehaviour
             float t = LinScaleFloat(tMin, tMax, r, rounds);
             float a = LinScaleFloat(aMin, aMax, r, rounds);
             float s = LinScaleFloat(sMin, sMax, r, rounds);
+            float h = LinScaleFloat(hMin, hMax, r, rounds); ;
+            float b = LinScaleFloat(bMin, bMax, r, rounds); ;
 
-            yield return StartCoroutine(Shuffle(n, t, p, a, x, s));
+            yield return StartCoroutine(Shuffle(n, t, p, a, x, s, h, b));
             Statics.startRound++;
             scoreBoard.text = Statics.startRound.ToString();
         }
@@ -98,7 +102,9 @@ public class Carousel : MonoBehaviour
     /// Each shuffle takes <b><i>t</i></b> seconds. <br/>
     /// There are <b><i>p</i></b> positions in the shuffle. <br/>
     /// The positions are across an angle of <b><i>a</i></b> degrees. <br/>
-    /// Each shuffle is followed by <b><i>x</i></b> attacks, each with speed <b><i>s</i></b>.
+    /// Each shuffle is followed by <b><i>x</i></b> attacks, each with speed <b><i>s</i></b>. <br/>
+    /// The time between the creation of 2 cannonballs is <b><i>b</i></b> seconds. <br/>
+    /// After the cannonball is created, the attack is launched after <b><i>h</i></b> seconds.
     /// </summary>
     /// <param name="n"></param>
     /// <param name="t"></param>
@@ -106,8 +112,10 @@ public class Carousel : MonoBehaviour
     /// <param name="a"></param>
     /// <param name="x"></param>
     /// <param name="s"></param>
+    /// <param name="h"></param>
+    /// <param name="b"></param>
     /// <returns></returns>
-    private IEnumerator Shuffle(int n, float t, int p, float a, int x, float s)
+    private IEnumerator Shuffle(int n, float t, int p, float a, int x, float s, float h, float b)
     {
         AngleDivision(p, a);
 
@@ -130,8 +138,8 @@ public class Carousel : MonoBehaviour
             // Wait until rotation finish
             yield return new WaitForSeconds(t);
 
-            Attack(x, 0.75f, s);
-            yield return new WaitForSeconds((float)x * 0.75f); // p1*p2
+            // Attack Sequence
+            yield return StartCoroutine(Attack(x, h, b, s));
         }
 
         Reset(t);
@@ -163,10 +171,9 @@ public class Carousel : MonoBehaviour
     }
 
     // Attack
-    private void Attack(int count, float interval, float speed)
+    private IEnumerator Attack(int count, float holdTime, float period, float speed)
     {
         List<Transform> MuzzlesAvailable = new List<Transform>(Muzzles);
-        float holdTime = (float)count * interval;
 
         for (int i = 0; i < count; i++)
         {
@@ -178,12 +185,11 @@ public class Carousel : MonoBehaviour
             // Create Cannonball
             var ball = Instantiate(Cannonball, muzzle.position, muzzle.rotation);
 
-            // Subtime
-            float subTime = ((float)(i+1) / (float)count) * (holdTime);
-
             // Launch Cannonball
             Cannonball cb = (Cannonball) ball.GetComponent(typeof(Cannonball));
-            cb.Attack(target, subTime, speed);
+            cb.Attack(target, holdTime, speed);
+
+            yield return new WaitForSeconds(period);
         }
     }
 
