@@ -32,10 +32,10 @@ public class Head : MonoBehaviour
         rightCon.SendHapticImpulse(0.3f, 0.2f);
 
         if (lifes == 1){
-            source.PlayOneShot(gong);
+            source.PlayOneShot(gong, 1.0f);
             StartCoroutine(EndGame());
         } else {
-            source.PlayOneShot(taiko);
+            source.PlayOneShot(taiko, 0.5f);
             lifes--;
         }
     }

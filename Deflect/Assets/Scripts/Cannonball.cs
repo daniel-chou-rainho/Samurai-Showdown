@@ -18,8 +18,8 @@ public class Cannonball : MonoBehaviour
     private AudioSource source;
     private float minVelocity = 1.0f;
     private float maxVelocity = 5.0f;
-    private float minVolume = 0.05f;
-    private float maxVolume = 0.1f;
+    private float minVolume = 0.1f;
+    private float maxVolume = 0.2f;
     private float minPitch = 0.9f;
     private float maxPitch = 1.1f;
 
@@ -30,7 +30,7 @@ public class Cannonball : MonoBehaviour
 
         // Smoke Poof SFX
         source.pitch = Random.Range(minPitch, maxPitch);
-        source.volume = Random.Range(0.4f, 0.6f);
+        source.volume = 0.8f;
         source.clip = poofClip;
         source.Play();
     }
@@ -106,7 +106,7 @@ public class Cannonball : MonoBehaviour
                 float diff = maxVolume - minVolume;
                 double volume = (double)Mathf.InverseLerp(minVelocity, maxVelocity, v) * (double)diff + (double)minVolume;
                 source.pitch = Random.Range(minPitch, maxPitch);
-                source.PlayOneShot(metalClip, (float)volume);
+                source.PlayOneShot(metalClip, (float)volume * 1.0f);
 
                 // Velocity-based Rebound
                 Vector3 dir = rb.velocity;
