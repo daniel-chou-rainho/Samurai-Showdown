@@ -11,11 +11,8 @@ public class Cannonball : MonoBehaviour
     public Transform srk;
     private float dps = 1000; // degrees/sec
     private bool rotate = true;
-
-    // Collision Detection
     private bool bladed = false;
     private GameObject blade;
-    private GameObject[] bladeCloud;
 
     public AudioClip metalClip;
     public AudioClip poofClip;
@@ -31,10 +28,8 @@ public class Cannonball : MonoBehaviour
     private void Start()
     {
         blade = GameObject.FindGameObjectsWithTag("Blade")[0];
-        bladeCloud = GameObject.FindGameObjectsWithTag("BladeCloud");
-
         source = GetComponent<AudioSource>();
-        gameObject.transform.Rotate(0, 0, 45 * Random.Range(0, 7));
+        srk.Rotate(0, 0, 45 * Random.Range(0, 7));
 
         // Smoke Poof SFX
         source.pitch = Random.Range(minPitch, maxPitch);
@@ -47,23 +42,6 @@ public class Cannonball : MonoBehaviour
     {
         if (!rotate) { return; }
         srk.Rotate(0, dps * Time.deltaTime, 0);
-    }
-
-    private void FixedUpdate()
-    {
-        if (bladed) { return; }
-
-        float min = 10.0f;
-        foreach(GameObject point in bladeCloud)
-        {
-            min = Mathf.Min(min, Mathf.Abs(Vector3.Distance(point.transform.position, gameObject.transform.position)));
-        }
-
-        if(Mathf.Abs(min) < 0.2f)
-        {
-            bladed = true;
-            Collide();
-        }
     }
 
     public void Attack(Transform target, float holdTime, float speed)
@@ -79,6 +57,7 @@ public class Cannonball : MonoBehaviour
         rb = gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
         rb.mass = 0.1f;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         Fly();
     }
 
@@ -100,8 +79,6 @@ public class Cannonball : MonoBehaviour
         // Stop Whoosh SFX
         source.Stop();
         source.loop = false;
-        rotate = false;
-        rb.useGravity = true;
 
         if (other.tag == "Head")
         {
@@ -110,8 +87,12 @@ public class Cannonball : MonoBehaviour
         }
     }
 
-    private void Collide()
+    private void OnCollisionEnter(Collision other)
     {
+        // Unique Collision
+        if (bladed) { return; }
+        bladed = true;
+
         rotate = false;
         rb.useGravity = true;
 
@@ -132,20 +113,9 @@ public class Cannonball : MonoBehaviour
             source.PlayOneShot(metalClip, (float)volume * 1.0f);
 
             // Velocity-based Rebound
-            Debug.Log(rb.useGravity);
             Vector3 dir = rb.velocity;
             dir = -dir.normalized;
-            Debug.Log(vc);
-            rb.AddForce(dir * (float)vc * 15);
-        }
+            GetComponent<Rigidbody>().AddForce(dir * (float)vc * 20);
+        } 
     }
-
-    //void OnDrawGizmos()
-    //{
-    //    if(bladeCloud == null) { return; }
-    //    foreach (GameObject point in bladeCloud)
-    //    {
-    //        Gizmos.DrawWireSphere(point.transform.position, 0.1f);
-    //    }
-    //}
 }

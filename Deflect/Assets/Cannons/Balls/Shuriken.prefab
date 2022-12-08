@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1154814851723626138
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3055964113022372444}
-  m_Layer: 8
-  m_Name: Pointer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3055964113022372444
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154814851723626138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8687001349126996971}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2189028483211899475
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +327,6 @@ Transform:
   m_Children:
   - {fileID: 4285791156363755577}
   - {fileID: 507170213322950618}
-  - {fileID: 3055964113022372444}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -375,7 +343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   srk: {fileID: 4285791156363755577}
-  pointer: {fileID: 3055964113022372444}
   metalClip: {fileID: 8300000, guid: 7787e23776e07414a8784a5724e12b54, type: 3}
   poofClip: {fileID: 8300000, guid: 1260fec3d18df7e4c94b52678bf42613, type: 3}
   whooshClip: {fileID: 8300000, guid: a4456ea40c8bc6647bf43deb8650985f, type: 3}
