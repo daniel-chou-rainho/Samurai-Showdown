@@ -65,8 +65,6 @@ public class Carousel : MonoBehaviour
 
         for (int r = Statics.startRound; r < rounds; r++)
         {
-            Debug.Log("Round " + r.ToString());
-
             // Difficulty Scaling
             int n = LinScaleInt(nMin, nMax, r, rounds);
             int p = LinScaleInt(pMin, pMax, r, rounds);
