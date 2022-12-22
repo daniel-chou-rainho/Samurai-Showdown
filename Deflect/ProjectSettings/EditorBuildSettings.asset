@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/DojoDay.unity
+    guid: e93198f0c1724f943a41db191f175871
+  - enabled: 1
+    path: Assets/Scenes/DojoNight.unity
+    guid: b4bcb6a7e9622fd4a999a302aafcab20
+  - enabled: 0
+    path: Assets/Scenes/Main 1.unity
+    guid: 4f9dd303ceb8dcc48ad327b65dcad9a0
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/Main 1.unity
-    guid: 4f9dd303ceb8dcc48ad327b65dcad9a0
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0144b62d411be1c149cfb4c755c824f7,
       type: 2}

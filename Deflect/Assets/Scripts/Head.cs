@@ -62,7 +62,11 @@ public class Head : MonoBehaviour
         // Normal Motion
         Time.timeScale = 1.0f;
 
-        // Reload Level
-        SceneManager.LoadScene(0);
+        // Load Level
+        if (Statics.startRound >= 30) {
+            SceneManager.LoadScene(1); // DojoNight
+        } else {
+            SceneManager.LoadScene(0); // DojoDay
+        }
     }
 }
