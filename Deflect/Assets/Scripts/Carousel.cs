@@ -50,10 +50,10 @@ public class Carousel : MonoBehaviour
 
     private IEnumerator Dealer(int rounds)
     {
-        int nMin = 3, nMax = 5;
+        int nMin = 1, nMax = 3;
         int pMin = 5, pMax = 7;
-        int xMin = 1, xMax = 5;
-        float tMin = 1.75f, tMax = 0.25f;
+        int xMin = 2, xMax = 5;
+        float tMin = 1.50f, tMax = 0.25f;
         float aMin = 60.0f, aMax = 90.0f;
         float sMin = 5.0f, sMax = 10.0f;
         float hMin = 1.0f, hMax = 0.75f;
