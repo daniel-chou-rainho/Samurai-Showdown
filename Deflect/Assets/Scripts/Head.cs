@@ -8,6 +8,7 @@ public class Head : MonoBehaviour
 {
     public int lifes;
     public Fader fader;
+    private bool died;
 
     // SFX
     public AudioClip gong;
@@ -42,7 +43,8 @@ public class Head : MonoBehaviour
 
     private IEnumerator EndGame()
     {
-        Debug.Log("You died.");
+        if (died) { yield break; }
+        died = true;
 
         // Non-Complete Reset
         Statics.startRound = Statics.startRound - 5;
