@@ -10,6 +10,7 @@ public class Cannonball : MonoBehaviour
     public Material ghostMat;
     public Material bloodMat;
     public Collider collider;
+    private TrailRenderer trail;
 
     private Rigidbody rb;
     private Transform target;
@@ -35,12 +36,18 @@ public class Cannonball : MonoBehaviour
 
     private void typeSet()
     {
+        // Get Trail
+        trail = srk.GetComponent<TrailRenderer>();
+        trail.material.color = Color.blue;
+
+        // Get Type
         int rn = Random.Range(1, 6);
 
         // Blood
         if (rn == 1)
         {
             srk.GetComponent<Renderer>().material = bloodMat;
+            trail.material.color = Color.red;
             blood = 1.5f;
         }
 
@@ -48,6 +55,7 @@ public class Cannonball : MonoBehaviour
         if (rn == 2)
         {
             srk.GetComponent<Renderer>().material = ghostMat;
+            trail.material.color = Color.white;
             collider.enabled = false;
             ghost = true;
         }
