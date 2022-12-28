@@ -172,7 +172,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c79188ce6f34564394f24c002a99c19, type: 2}
+  - {fileID: 2100000, guid: ed70d5f70cf152a4dbace1662fbfe186, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,8 +304,8 @@ GameObject:
   - component: {fileID: 8687001349126996971}
   - component: {fileID: 8687001349126996968}
   - component: {fileID: 6695734203259193624}
-  - component: {fileID: 6355483070309501860}
   - component: {fileID: 962975091109709218}
+  - component: {fileID: 6355483070309501860}
   m_Layer: 8
   m_Name: Shuriken
   m_TagString: Untagged
@@ -342,6 +342,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b99c764ab764e4198db8beaf45f97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ghostMat: {fileID: 2100000, guid: c413a4f491d4cea47962a300710b29bc, type: 2}
+  bloodMat: {fileID: 2100000, guid: 11a76afaf7cedd148bd76885c0608ce7, type: 2}
+  collider: {fileID: 6355483070309501860}
   srk: {fileID: 4285791156363755577}
   metalClip: {fileID: 8300000, guid: 7787e23776e07414a8784a5724e12b54, type: 3}
   poofClip: {fileID: 8300000, guid: 1260fec3d18df7e4c94b52678bf42613, type: 3}
@@ -442,19 +445,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &6355483070309501860
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8687001349126996969}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.025, y: 0.25, z: 0.25}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &962975091109709218
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -464,6 +454,19 @@ BoxCollider:
   m_GameObject: {fileID: 8687001349126996969}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.025, y: 0.25, z: 0.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6355483070309501860
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8687001349126996969}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.025, y: 0.25, z: 0.25}

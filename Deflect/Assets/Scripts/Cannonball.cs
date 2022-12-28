@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Cannonball : MonoBehaviour
 {
+    // Type
+    private bool ghost = false;
+    private float blood = 1.0f;
+    public Material ghostMat;
+    public Material bloodMat;
+    public Collider collider;
+
     private Rigidbody rb;
     private Transform target;
     private float speed;
@@ -12,6 +19,7 @@ public class Cannonball : MonoBehaviour
     private float dps = 1000; // degrees/sec
     private bool rotate = true;
     private bool bladed = false;
+    private bool headed = false;
     private GameObject blade;
 
     public AudioClip metalClip;
@@ -25,8 +33,29 @@ public class Cannonball : MonoBehaviour
     private float minPitch = 0.9f;
     private float maxPitch = 1.1f;
 
+    private void typeSet()
+    {
+        int rn = Random.Range(1, 6);
+
+        // Blood
+        if (rn == 1)
+        {
+            srk.GetComponent<Renderer>().material = bloodMat;
+            blood = 1.5f;
+        }
+
+        // Ghost
+        if (rn == 2)
+        {
+            srk.GetComponent<Renderer>().material = ghostMat;
+            collider.enabled = false;
+            ghost = true;
+        }
+    }
+
     private void Start()
     {
+        typeSet();
         blade = GameObject.FindGameObjectsWithTag("Blade")[0];
         source = GetComponent<AudioSource>();
         srk.Rotate(0, 0, 45 * Random.Range(0, 7));
@@ -47,7 +76,7 @@ public class Cannonball : MonoBehaviour
     public void Attack(Transform target, float holdTime, float speed)
     {
         this.target = target;
-        this.speed = speed;
+        this.speed = speed * blood;
         StartCoroutine(Hold(holdTime));
     }
 
@@ -76,6 +105,10 @@ public class Cannonball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Unique Collision
+        if (headed) { return; }
+        headed = true;
+
         // Stop Whoosh SFX
         source.Stop();
         source.loop = false;
@@ -90,14 +123,14 @@ public class Cannonball : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         // Unique Collision
-        if (bladed) { return; }
+        if (bladed || ghost) { return; }
         bladed = true;
 
         rotate = false;
         rb.useGravity = true;
 
         // Vibration
-        blade.GetComponent<HapticBlade>().Vibrate(0.1f, 0.1f);
+        blade.GetComponent<HapticBlade>().Vibrate(0.1f * blood, 0.1f * blood);
 
         VelocityEstimator estimator = blade.GetComponent<VelocityEstimator>();
         if (estimator)
@@ -115,7 +148,7 @@ public class Cannonball : MonoBehaviour
             // Velocity-based Rebound
             Vector3 dir = rb.velocity;
             dir = -dir.normalized;
-            GetComponent<Rigidbody>().AddForce(dir * (float)vc * 20);
+            GetComponent<Rigidbody>().AddForce(dir * (float)vc * 15);
         } 
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 100
+  controlID: 30
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 101
+  controlID: 31
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -227,7 +227,7 @@ MonoBehaviour:
   - {fileID: 18}
   - {fileID: 19}
   m_Selected: 0
-  m_LastSelected: 4
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -371,7 +371,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 26e9fcff6eecfcff86effcff6ef2fcff56f5fcff3ef8fcff36fbfcff1efefcff3426fdff8e2afdff0c30fdfff432fdffe444fdff7652fdffbe55fdffc658fdffbe5bfdffc65efdffbe61fdffb664fdffbe67fdffc66afdffce6dfdffc670fdffce73fdffd676fdffde79fdffd67cfdffde7ffdff1683fdff6e86fdffa689fdffae8cfdffb68ffdffbe92fdffb695fdffae98fdff969bfdff2a44feff9c44feff5c45fefff645feff9446feffe44efeff085dfeff9c69feffd837ffff263effff4088ffffc688ffff628affffcc8dffff6e94ffff06acffffa8afffff2eb3ffff92c7ffff66d5fffff4e6ffff2efbffff40a1000036a2000086a20000bcc0000058c10000f6c1000090fd0000e6fd00002efe00003a02010010b6010020b6010062b70100aeb70100d6b701002cc3020034c30200c8c30200
+      m_ExpandedIDs: fae8ffff36e9ffff86ebffffc0edffff80eeffffbceeffff8ef3ffffccf5ffff2efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -473,7 +473,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.666666}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -654,9 +654,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.2908986, y: 2.6519675, z: 44.363846}
+    m_Target: {x: -12.993012, y: -3.4599216, z: 40.28978}
     speed: 2
-    m_Value: {x: -2.2908986, y: 2.6519675, z: 44.363846}
+    m_Value: {x: -12.993012, y: -3.4599216, z: 40.28978}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -703,9 +703,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.0014841156, y: 0.028730566, z: 0.0004189302, w: -0.9990523}
+    m_Target: {x: -0.060797717, y: 0.14934641, z: -0.008813901, w: -0.98633343}
     speed: 2
-    m_Value: {x: -0.0000144744645, y: 0.028746497, z: 0.0003761264, w: -0.99958664}
+    m_Value: {x: -0.05934978, y: 0.14943926, z: -0.00859493, w: -0.9869507}
   m_Size:
     m_Target: 25.100422
     speed: 2
@@ -1888,22 +1888,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\choud\source\repos\Shuriken\Deflect
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9c7a0000
-    m_LastClickedID: 31388
-    m_ExpandedIDs: 00000000327a0000d67a00000a970000a29a0000ac9a00004ec7010000ca9a3b
+    m_SelectedIDs: c27f0000
+    m_LastClickedID: 32706
+    m_ExpandedIDs: 00000000c27f0000c47f0000c67f0000c87f0000ca7f0000cc7f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1931,7 +1931,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000327a0000
+    m_ExpandedIDs: 00000000c27f0000c47f0000c67f0000c87f0000ca7f0000cc7f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000de720000346f0000f8740000487500002678000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
