@@ -115,14 +115,15 @@ public class Cannonball : MonoBehaviour
     {
         // Unique Collision
         if (headed) { return; }
-        headed = true;
-
-        // Stop Whoosh SFX
-        source.Stop();
-        source.loop = false;
 
         if (other.tag == "Head")
         {
+            headed = true;
+
+            // Stop Whoosh SFX
+            source.Stop();
+            source.loop = false;
+            
             other.gameObject.GetComponent<Head>().TakeLife();
             Destroy(this.gameObject);
         }
