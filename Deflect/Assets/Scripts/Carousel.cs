@@ -46,19 +46,19 @@ public class Carousel : MonoBehaviour
         if (running) { return; }
         running = true;
 
-        StartCoroutine(Dealer(50));
+        StartCoroutine(Dealer(100));
     }
 
     private IEnumerator Dealer(int rounds)
     {
-        int nMin = 1, nMax = 3;
+        int nMin = 1, nMax = 1;
         int pMin = 5, pMax = 7;
-        int xMin = 2, xMax = 5;
+        int xMin = 2, xMax = 6;
         float tMin = 1.50f, tMax = 0.25f;
-        float aMin = 60.0f, aMax = 90.0f;
-        float sMin = 5.0f, sMax = 10.0f;
-        float hMin = 1.0f, hMax = 0.75f;
-        float bMin = 1.0f, bMax = 0.75f;
+        float aMin = 60.0f, aMax = 120.0f;
+        float sMin = 5.0f, sMax = 12.5f;
+        float hMin = 1.0f, hMax = 0.60f;
+        float bMin = 1.0f, bMax = 0.60f;
 
         // Complete Reset
         if (Statics.startRound > rounds)
@@ -182,7 +182,7 @@ public class Carousel : MonoBehaviour
             MuzzlesAvailable.RemoveAt(rng1);
 
             // Get Random Shuriken
-            int rng2 = Random.Range(1, 3);
+            int rng2 = Random.Range(1, 6);
             GameObject srk;
             if (rng2 == 1) { srk = Triplet; }
             else { srk = Star; }
