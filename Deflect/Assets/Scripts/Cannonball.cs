@@ -27,8 +27,6 @@ public class Cannonball : MonoBehaviour
     public AudioClip poofClip;
     public AudioClip whooshClip;
     private AudioSource source;
-    private float minVelocity = 1.0f;
-    private float maxVelocity = 5.0f;
     private float minVolume = 0.1f;
     private float maxVolume = 0.2f;
     private float minPitch = 0.9f;
@@ -119,11 +117,6 @@ public class Cannonball : MonoBehaviour
         if (other.tag == "Head")
         {
             headed = true;
-
-            // Stop Whoosh SFX
-            source.Stop();
-            source.loop = false;
-            
             other.gameObject.GetComponent<Head>().TakeLife();
             Destroy(this.gameObject);
         }
@@ -138,23 +131,21 @@ public class Cannonball : MonoBehaviour
         rotate = false;
         rb.useGravity = true;
 
-        // Vibration
+        // Haptics
         blade.GetComponent<HapticBlade>().Vibrate(0.1f * blood, 0.1f * blood);
 
+        // SFX
+        source.Stop();
+        source.loop = false;
+        source.PlayOneShot(metalClip, Random.Range(0.7f, 0.9f));
+
+        // Rebound
         VelocityEstimator estimator = blade.GetComponent<VelocityEstimator>();
         if (estimator)
         {
             float v = estimator.GetVelocityEstimate().magnitude;
-            double v01 = (double)Mathf.InverseLerp(minVelocity, maxVelocity, v);
             double vc = Mathf.Clamp(v, 2.0f, 5.0f);
 
-            // Velocity-based SFX
-            float diff = maxVolume - minVolume;
-            double volume = v01 * (double)diff + (double)minVolume;
-            source.pitch = Random.Range(minPitch, maxPitch);
-            source.PlayOneShot(metalClip, (float)volume * 1.0f);
-
-            // Velocity-based Rebound
             Vector3 dir = rb.velocity;
             dir = -dir.normalized;
             GetComponent<Rigidbody>().AddForce(dir * (float)vc * 15);
