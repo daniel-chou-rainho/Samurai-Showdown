@@ -5874,8 +5874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerObject: {fileID: 1725504361}
   target: {fileID: 1532870144}
-  Cannonball: {fileID: 8687001349126996969, guid: 106cf408aa23a234c8c1af4154c95c00,
-    type: 3}
+  Star: {fileID: 8687001349126996969, guid: 106cf408aa23a234c8c1af4154c95c00, type: 3}
+  Triplet: {fileID: 8687001349126996969, guid: 94456faf2f379c64994e354fa98285f3, type: 3}
   scoreBoard: {fileID: 1794159139}
   L1Cannons:
   - {fileID: 1185219053}

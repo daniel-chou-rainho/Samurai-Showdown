@@ -9,7 +9,8 @@ public class Carousel : MonoBehaviour
     public Transform centerObject;
     private Vector3 center;
     public Transform target;
-    public GameObject Cannonball;
+    public GameObject Star;
+    public GameObject Triplet;
     public TextMeshProUGUI scoreBoard;
     private bool running = false;
 
@@ -180,12 +181,18 @@ public class Carousel : MonoBehaviour
             Transform muzzle = MuzzlesAvailable[rng1];
             MuzzlesAvailable.RemoveAt(rng1);
 
+            // Get Random Shuriken
+            int rng2 = Random.Range(1, 3);
+            GameObject srk;
+            if (rng2 == 1) { srk = Triplet; }
+            else { srk = Star; }
+
             // Create Cannonball
-            var ball = Instantiate(Cannonball, muzzle.position, muzzle.rotation);
+            var ball = Instantiate(srk, muzzle.position, muzzle.rotation);
 
             // Launch Cannonball
             Cannonball cb = (Cannonball) ball.GetComponent(typeof(Cannonball));
-            cb.Attack(target, holdTime, speed);
+            cb.Attack(target, holdTime, speed, rng2 != 1);
 
             yield return new WaitForSeconds(period);
         }

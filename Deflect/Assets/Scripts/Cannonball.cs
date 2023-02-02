@@ -4,25 +4,18 @@ using UnityEngine;
 
 public class Cannonball : MonoBehaviour
 {
-    // Type
-    private bool ghost = false;
-    private float blood = 1.0f;
-    public Material ghostMat;
-    public Material bloodMat;
-    public Collider collider;
-    private TrailRenderer trail;
-
+    public Transform srk;
+    private GameObject blade;
     private Rigidbody rb;
     private Transform target;
     private float speed;
 
-    public Transform srk;
     private float dps = 1000; // degrees/sec
-    private bool rotate = true;
+    private bool rotate = false;
     private bool bladed = false;
     private bool headed = false;
-    private GameObject blade;
 
+    // SFX
     public AudioClip metalClip;
     public AudioClip poofClip;
     public AudioClip whooshClip;
@@ -32,36 +25,8 @@ public class Cannonball : MonoBehaviour
     private float minPitch = 0.9f;
     private float maxPitch = 1.1f;
 
-    private void typeSet()
-    {
-        // Get Trail
-        trail = srk.GetComponent<TrailRenderer>();
-        trail.material.color = Color.blue;
-
-        // Get Type
-        int rn = Random.Range(1, 6);
-
-        // Blood
-        if (rn == 1)
-        {
-            srk.GetComponent<Renderer>().material = bloodMat;
-            trail.material.color = Color.red;
-            blood = 1.5f;
-        }
-
-        // Ghost
-        if (rn == 2)
-        {
-            srk.GetComponent<Renderer>().material = ghostMat;
-            trail.material.color = Color.white;
-            collider.enabled = false;
-            ghost = true;
-        }
-    }
-
     private void Start()
     {
-        typeSet();
         blade = GameObject.FindGameObjectsWithTag("Blade")[0];
         source = GetComponent<AudioSource>();
         srk.Rotate(0, 0, 45 * Random.Range(0, 7));
@@ -79,10 +44,11 @@ public class Cannonball : MonoBehaviour
         srk.Rotate(0, dps * Time.deltaTime, 0);
     }
 
-    public void Attack(Transform target, float holdTime, float speed)
+    public void Attack(Transform target, float holdTime, float speed, bool rotate)
     {
         this.target = target;
-        this.speed = speed * blood;
+        this.speed = speed;
+        this.rotate = rotate;
         StartCoroutine(Hold(holdTime));
     }
 
@@ -102,6 +68,7 @@ public class Cannonball : MonoBehaviour
         Destroy(this.gameObject, 4.0f);
 
         // Whoosh SFX
+        if(!rotate) { return; }
         source.loop = true;
         source.clip = whooshClip;
         source.volume = Random.Range(minVolume, maxVolume);
@@ -125,14 +92,14 @@ public class Cannonball : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         // Unique Collision
-        if (bladed || ghost) { return; }
+        if (bladed) { return; }
         bladed = true;
 
         rotate = false;
         rb.useGravity = true;
 
         // Haptics
-        blade.GetComponent<HapticBlade>().Vibrate(0.1f * blood, 0.1f * blood);
+        blade.GetComponent<HapticBlade>().Vibrate(0.1f, 0.1f);
 
         // SFX
         source.Stop();
