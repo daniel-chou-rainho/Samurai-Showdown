@@ -15,6 +15,9 @@ public class Cannonball : MonoBehaviour
     private bool bladed = false;
     private bool headed = false;
 
+    // VFX
+    public ParticleSystem impact;
+
     // SFX
     public AudioClip metalClip;
     public AudioClip poofClip;
@@ -106,6 +109,9 @@ public class Cannonball : MonoBehaviour
         source.loop = false;
         source.PlayOneShot(metalClip, Random.Range(0.7f, 0.9f));
 
+        // VFX
+        impact.Play();
+        
         // Rebound
         VelocityEstimator estimator = blade.GetComponent<VelocityEstimator>();
         if (estimator)
