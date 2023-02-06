@@ -5874,9 +5874,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerObject: {fileID: 1725504361}
   target: {fileID: 1532870144}
-  Star: {fileID: 8687001349126996969, guid: 106cf408aa23a234c8c1af4154c95c00, type: 3}
-  Triplet: {fileID: 8687001349126996969, guid: 94456faf2f379c64994e354fa98285f3, type: 3}
   scoreBoard: {fileID: 1794159139}
+  srkBlue: {fileID: 8687001349126996969, guid: 106cf408aa23a234c8c1af4154c95c00, type: 3}
+  srkRed: {fileID: 8687001349126996969, guid: f4825e7081ff5424f95aa5d3751839f2, type: 3}
+  srkYellow: {fileID: 8687001349126996969, guid: e72fcf21519460c488af80f39515d6e7,
+    type: 3}
   L1Cannons:
   - {fileID: 1185219053}
   - {fileID: 1787240748}

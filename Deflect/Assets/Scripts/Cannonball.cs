@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class Cannonball : MonoBehaviour
 {
-    public Transform srk;
+    private srkType type;
     private GameObject blade;
     private Rigidbody rb;
     private Transform target;
-    private float speed;
 
     private float dps = 1000; // degrees/sec
-    private bool rotate = false;
     private bool bladed = false;
     private bool headed = false;
+
+    // Trajectory
+    private Vector3 direction;
+    private bool rotate = false;
+    private bool zig = false;
+
+    // Trajectory Parameters
+    private float speed;
+    private float zigSpeedX;
+    private float zigSpeedY;
+    private float zigSize = 0.007f;
 
     // VFX
     public ParticleSystem impact;
@@ -32,7 +41,8 @@ public class Cannonball : MonoBehaviour
     {
         blade = GameObject.FindGameObjectsWithTag("Blade")[0];
         source = GetComponent<AudioSource>();
-        srk.Rotate(0, 0, 45 * Random.Range(0, 7));
+        transform.LookAt(target);
+        transform.Rotate(0, 0, 45 * Random.Range(0, 7));
 
         // Smoke Poof SFX
         source.pitch = Random.Range(minPitch, maxPitch);
@@ -43,15 +53,30 @@ public class Cannonball : MonoBehaviour
 
     private void Update()
     {
-        if (!rotate) { return; }
-        srk.Rotate(0, dps * Time.deltaTime, 0);
+        if(rotate)
+        {
+            transform.Rotate(dps * Time.deltaTime, 0, 0);
+        }
+
+        if(zig)
+        {
+            transform.position = transform.position
+            + direction * Time.deltaTime * zigSpeedX
+            + transform.up * Mathf.Sin(Time.time * zigSpeedY) * zigSize;
+        }
     }
 
-    public void Attack(Transform target, float holdTime, float speed, bool rotate)
+    public void Attack(Transform target, float holdTime, float speed, srkType type)
     {
         this.target = target;
         this.speed = speed;
-        this.rotate = rotate;
+        this.type = type;
+
+        zigSpeedX = speed;
+        zigSpeedY = speed * 0.2f;
+
+        if(type != srkType.Red){ rotate = true; }
+
         StartCoroutine(Hold(holdTime));
     }
 
@@ -67,8 +92,12 @@ public class Cannonball : MonoBehaviour
 
     private void Fly()
     {
-        rb.velocity = (target.position - transform.position).normalized * speed;
-        Destroy(this.gameObject, 4.0f);
+        direction = (target.position - transform.position).normalized;
+
+        if(type == srkType.Yellow){ zig = true; }
+        else{ rb.velocity = direction * speed; }
+
+        Destroy(this.gameObject, 5.0f);
 
         // Whoosh SFX
         if(!rotate) { return; }
@@ -99,6 +128,7 @@ public class Cannonball : MonoBehaviour
         bladed = true;
 
         rotate = false;
+        zig = false;
         rb.useGravity = true;
 
         // Haptics
@@ -111,17 +141,14 @@ public class Cannonball : MonoBehaviour
 
         // VFX
         impact.Play();
-        
+
         // Rebound
         VelocityEstimator estimator = blade.GetComponent<VelocityEstimator>();
         if (estimator)
         {
             float v = estimator.GetVelocityEstimate().magnitude;
             double vc = Mathf.Clamp(v, 2.0f, 5.0f);
-
-            Vector3 dir = rb.velocity;
-            dir = -dir.normalized;
-            GetComponent<Rigidbody>().AddForce(dir * (float)vc * 15);
+            GetComponent<Rigidbody>().AddForce(-direction * (float)vc * 15);
         } 
     }
 }

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 11a76afaf7cedd148bd76885c0608ce7, type: 2}
+  - {fileID: 2100000, guid: 116fcb925606f0345ade77f250a6779e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -355,7 +355,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 11a76afaf7cedd148bd76885c0608ce7, type: 2}
+  - {fileID: 2100000, guid: 116fcb925606f0345ade77f250a6779e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -538,7 +538,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 11a76afaf7cedd148bd76885c0608ce7, type: 2}
+  - {fileID: 2100000, guid: 116fcb925606f0345ade77f250a6779e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 6695734203259193624}
   - component: {fileID: 962975091109709218}
   m_Layer: 8
-  m_Name: Triplets
+  m_Name: srkNightRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,6 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   srk: {fileID: 8917157365167939976}
+  impact: {fileID: 0}
   metalClip: {fileID: 8300000, guid: 7787e23776e07414a8784a5724e12b54, type: 3}
   poofClip: {fileID: 8300000, guid: 1260fec3d18df7e4c94b52678bf42613, type: 3}
   whooshClip: {fileID: 8300000, guid: a4456ea40c8bc6647bf43deb8650985f, type: 3}

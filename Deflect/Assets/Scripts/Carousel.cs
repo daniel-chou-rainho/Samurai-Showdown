@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum srkType { Blue, Red, Yellow }
+
 public class Carousel : MonoBehaviour
 {
     // General
     public Transform centerObject;
-    private Vector3 center;
     public Transform target;
-    public GameObject Star;
-    public GameObject Triplet;
     public TextMeshProUGUI scoreBoard;
+
+    public GameObject srkBlue;
+    public GameObject srkRed;
+    public GameObject srkYellow;
+
+    private Vector3 center;
     private bool running = false;
 
     // Levels
@@ -182,17 +187,19 @@ public class Carousel : MonoBehaviour
             MuzzlesAvailable.RemoveAt(rng1);
 
             // Get Random Shuriken
-            int rng2 = Random.Range(1, 6);
+            int rng2 = Random.Range(2, 3);
             GameObject srk;
-            if (rng2 == 1) { srk = Triplet; }
-            else { srk = Star; }
+            srkType type;
+            if (rng2 == 1) { type = srkType.Red; srk = srkRed; }
+            if (rng2 == 2) { type = srkType.Yellow; srk = srkYellow; }
+            else { type = srkType.Blue; srk = srkBlue; }
 
             // Create Cannonball
             var ball = Instantiate(srk, muzzle.position, muzzle.rotation);
 
             // Launch Cannonball
             Cannonball cb = (Cannonball) ball.GetComponent(typeof(Cannonball));
-            cb.Attack(target, holdTime, speed, rng2 != 1);
+            cb.Attack(target, holdTime, speed, type);
 
             yield return new WaitForSeconds(period);
         }
