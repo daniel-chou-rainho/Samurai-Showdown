@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.InputSystem;
 
 public class GameMenuManager : MonoBehaviour
@@ -8,26 +9,54 @@ public class GameMenuManager : MonoBehaviour
     public Transform head;
     public float spawnDistance = 2;
     public GameObject menu;
-    public InputActionProperty showButton;
+    // public InputActionProperty showButton;
+
+    private UnityEngine.XR.InputDevice leftHandDevice;
+    private bool menuButtonPressed = false;
+
+
+    private void Awake()
+    {
+        List<UnityEngine.XR.InputDevice> devices = new List<UnityEngine.XR.InputDevice>();
+        InputDevices.GetDevices(devices);
+        foreach (var device in devices)
+        {
+            if ((device.characteristics & InputDeviceCharacteristics.Left) == InputDeviceCharacteristics.Left)
+            {
+                leftHandDevice = device;
+                break;
+            }
+        }
+    }
 
     void Update()
     {
-        if(showButton.action.WasPressedThisFrame())
+        // if(showButton.action.WasPressedThisFrame())
+        if (leftHandDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.menuButton, out bool isPressed))
         {
-            // TimeStop
-            if (!menu.activeSelf){ Time.timeScale = 0f; }
-            else { Time.timeScale = 1f; }
+            if (isPressed && !menuButtonPressed)
+            {
+                menuButtonPressed = true;
 
-            menu.SetActive(!menu.activeSelf);
+                // TimeStop
+                if (!menu.activeSelf){ Time.timeScale = 0f; }
+                else { Time.timeScale = 1f; }
 
-            menu.transform.position = head.position
-                + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
+                menu.SetActive(!menu.activeSelf);
+
+                menu.transform.position = head.position
+                    + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
+            }
+            else if (!isPressed && menuButtonPressed)
+            {
+                menuButtonPressed = false;
+            } 
         }
 
         menu.transform.LookAt(
             new Vector3(head.position.x, menu.transform.position.y, head.position.z)
         );
 
-        menu.transform.forward *= -1;   
+        menu.transform.forward *= -1;
     }
 }
