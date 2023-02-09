@@ -53,11 +53,17 @@ public class Carousel : MonoBehaviour
         if (running) { return; }
         running = true;
 
-        StartCoroutine(Dealer(100));
+        StartCoroutine(Dealer(50));
     }
 
     private IEnumerator Dealer(int rounds)
     {
+        // Init
+        int r = Statics.startRound;
+        int n = 0, p = 0, x = 0;
+        float t = 0, a = 0, s = 0, h = 0, b = 0;
+
+        // Bounds
         int nMin = 1, nMax = 1;
         int pMin = 5, pMax = 7;
         int xMin = 2, xMax = 6;
@@ -67,22 +73,21 @@ public class Carousel : MonoBehaviour
         float hMin = 1.0f, hMax = 0.60f;
         float bMin = 1.0f, bMax = 0.60f;
 
-        // Complete Reset
-        if (Statics.startRound > rounds)
-            Statics.startRound = 0;
-
-        for (int r = Statics.startRound; r < rounds; r++)
+        while (true)
         {
             // Difficulty Scaling
-            int n = LinScaleInt(nMin, nMax, r, rounds);
-            int p = LinScaleInt(pMin, pMax, r, rounds);
-            int x = LinScaleInt(xMin, xMax, r, rounds);
-            float t = LinScaleFloat(tMin, tMax, r, rounds);
-            float a = LinScaleFloat(aMin, aMax, r, rounds);
-            float s = LinScaleFloat(sMin, sMax, r, rounds);
-            float h = LinScaleFloat(hMin, hMax, r, rounds); ;
-            float b = LinScaleFloat(bMin, bMax, r, rounds); ;
-
+            if(r < rounds)
+            {
+                n = LinScaleInt(nMin, nMax, r, rounds);
+                p = LinScaleInt(pMin, pMax, r, rounds);
+                x = LinScaleInt(xMin, xMax, r, rounds);
+                t = LinScaleFloat(tMin, tMax, r, rounds);
+                a = LinScaleFloat(aMin, aMax, r, rounds);
+                s = LinScaleFloat(sMin, sMax, r, rounds);
+                h = LinScaleFloat(hMin, hMax, r, rounds);
+                b = LinScaleFloat(bMin, bMax, r, rounds);
+                r++;
+            }
             yield return StartCoroutine(Shuffle(n, t, p, a, x, s, h, b));
             Statics.startRound++;
             scoreBoard.text = Statics.startRound.ToString();

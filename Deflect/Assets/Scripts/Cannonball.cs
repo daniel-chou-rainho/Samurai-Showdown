@@ -137,7 +137,7 @@ public class Cannonball : MonoBehaviour
         // SFX
         source.Stop();
         source.loop = false;
-        source.PlayOneShot(metalClip, Random.Range(0.7f, 0.9f));
+        if(gameObject != null) source.PlayOneShot(metalClip, Random.Range(0.7f, 0.9f));
 
         // VFX
         impact.Play();
