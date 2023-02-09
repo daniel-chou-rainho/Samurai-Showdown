@@ -18,6 +18,7 @@ public class Carousel : MonoBehaviour
 
     private Vector3 center;
     private bool running = false;
+    private System.Random random;
 
     // Levels
     public Cannon[] L1Cannons;
@@ -44,6 +45,7 @@ public class Carousel : MonoBehaviour
         MuzzleCollection();
         center = centerObject.position;
         scoreBoard.text = Statics.startRound.ToString();
+        random = new System.Random();
     }
 
     public void StartGame()
@@ -187,11 +189,11 @@ public class Carousel : MonoBehaviour
             MuzzlesAvailable.RemoveAt(rng1);
 
             // Get Random Shuriken
-            int rng2 = Random.Range(2, 3);
+            int rng2 = random.Next(1, 11);
             GameObject srk;
             srkType type;
-            if (rng2 == 1) { type = srkType.Red; srk = srkRed; }
-            if (rng2 == 2) { type = srkType.Yellow; srk = srkYellow; }
+            if (rng2 <= 2) { type = srkType.Red; srk = srkRed; }
+            else if (rng2 <= 4) { type = srkType.Yellow; srk = srkYellow; }
             else { type = srkType.Blue; srk = srkBlue; }
 
             // Create Cannonball
