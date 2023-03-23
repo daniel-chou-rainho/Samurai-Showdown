@@ -194,11 +194,11 @@ public class Carousel : MonoBehaviour
             MuzzlesAvailable.RemoveAt(rng1);
 
             // Get Random Shuriken
-            int rng2 = random.Next(1, 11);
+            int rng2 = random.Next(1, 101);
             GameObject srk;
             srkType type;
-            if (rng2 <= 2) { type = srkType.Red; srk = srkRed; }
-            else if (rng2 <= 4) { type = srkType.Yellow; srk = srkYellow; }
+            if (rng2 <= 8) { type = srkType.Red; srk = srkRed; }
+            else if (rng2 <= 30) { type = srkType.Yellow; srk = srkYellow; }
             else { type = srkType.Blue; srk = srkBlue; }
 
             // Create Cannonball
