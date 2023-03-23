@@ -47,9 +47,7 @@ public class Head : MonoBehaviour
         died = true;
 
         // Non-Complete Reset
-        Statics.startRound = Statics.startRound - 5;
-        if (Statics.startRound < 0)
-            Statics.startRound = 0;
+        Statics.startRound = Statics.startRound - Mathf.FloorToInt(0.2f * Statics.startRound);
 
         // Slow Motion
         Time.timeScale = 0.2f;
