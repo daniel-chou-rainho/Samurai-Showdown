@@ -88,6 +88,17 @@ public class Carousel : MonoBehaviour
                 b = LinScaleFloat(bMin, bMax, r, rounds);
                 r++;
             }
+            else
+            {
+                n = LinScaleInt(nMin, nMax, rounds, rounds);
+                p = LinScaleInt(pMin, pMax, rounds, rounds);
+                x = LinScaleInt(xMin, xMax, rounds, rounds);
+                t = LinScaleFloat(tMin, tMax, rounds, rounds);
+                a = LinScaleFloat(aMin, aMax, rounds, rounds);
+                s = LinScaleFloat(sMin, sMax, rounds, rounds);
+                h = LinScaleFloat(hMin, hMax, rounds, rounds);
+                b = LinScaleFloat(bMin, bMax, rounds, rounds);   
+            }
             yield return StartCoroutine(Shuffle(n, t, p, a, x, s, h, b));
             Statics.startRound++;
             scoreBoard.text = Statics.startRound.ToString();
