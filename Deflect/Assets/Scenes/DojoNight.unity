@@ -7071,6 +7071,14 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 482574569}
+    - target: {fileID: 2042271583, guid: e22342e3def410440a9a42b2986e8b04, type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1342919603}
+    - target: {fileID: 2042271583, guid: e22342e3def410440a9a42b2986e8b04, type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGame
+      objectReference: {fileID: 0}
     - target: {fileID: 1026536070918934, guid: e22342e3def410440a9a42b2986e8b04, type: 3}
       propertyPath: m_Name
       value: Katana_LODA
