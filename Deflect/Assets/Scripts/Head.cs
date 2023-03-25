@@ -9,6 +9,7 @@ public class Head : MonoBehaviour
     public int lifes;
     public Fader fader;
     private bool died;
+    private System.Random random;
 
     // SFX
     public AudioClip gong;
@@ -24,6 +25,7 @@ public class Head : MonoBehaviour
     private void Start()
     {
         source = GetComponent<AudioSource>();
+        random = new System.Random();
     }
 
     public void TakeLife()
@@ -61,7 +63,8 @@ public class Head : MonoBehaviour
         Time.timeScale = 1.0f;
 
         // Load Level
-        if (Statics.startRound >= 30) {
+        int rng = random.Next(1, 101);
+        if (rng <= 15) {
             SceneManager.LoadScene(1); // DojoNight
         } else {
             SceneManager.LoadScene(0); // DojoDay
