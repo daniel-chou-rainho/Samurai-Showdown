@@ -22,7 +22,7 @@ public class Cannonball : MonoBehaviour
     private float speed;
     private float zigSpeedX;
     private float zigSpeedY;
-    private float zigSize = 0.007f;
+    private float zigSize = 0.1f;
 
     // VFX
     public ParticleSystem impact;
@@ -57,11 +57,14 @@ public class Cannonball : MonoBehaviour
         {
             transform.Rotate(dps * Time.deltaTime, 0, 0);
         }
+    }
 
+    private void FixedUpdate()
+    {
         if(zig)
         {
             transform.position = transform.position
-            + direction * Time.deltaTime * zigSpeedX
+            + direction * Time.fixedDeltaTime * zigSpeedX
             + transform.up * Mathf.Sin(Time.time * zigSpeedY) * zigSize;
         }
     }
@@ -73,7 +76,7 @@ public class Cannonball : MonoBehaviour
         this.type = type;
 
         zigSpeedX = speed;
-        zigSpeedY = speed * 0.2f;
+        zigSpeedY = speed * 0.1f;
 
         if(type != srkType.Red){ rotate = true; }
 
