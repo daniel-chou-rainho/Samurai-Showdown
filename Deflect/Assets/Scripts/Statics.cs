@@ -5,9 +5,12 @@ using UnityEngine;
 public static class Statics
 {
     public static int startRound { get; set; }
+    public static float musicVolume { get; set; }
 
     static Statics()
     {
-        startRound = 0; // init
+        // init values
+        startRound = 0;
+        musicVolume = 1;
     }
 }

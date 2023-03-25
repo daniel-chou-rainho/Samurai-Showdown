@@ -1281,7 +1281,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1764537899}
         m_TargetAssemblyTypeName: MusicControl, Assembly-CSharp
-        m_MethodName: setVolume
+        m_MethodName: SetVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5580,7 +5580,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5682,6 +5682,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e296cc6697ecb7f429139b1c395b4fb3, type: 3}
   - {fileID: 8300000, guid: 409fb41f0b745f94d979c8d160e3a6a2, type: 3}
   - {fileID: 8300000, guid: f579239318dd8264d813b73934af4178, type: 3}
+  volumeSlider: {fileID: 296493444}
 --- !u!1001 &1787240746
 PrefabInstance:
   m_ObjectHideFlags: 0

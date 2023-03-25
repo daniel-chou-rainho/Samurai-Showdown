@@ -1,27 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MusicControl : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip[] tracks;
-
-    public static MusicControl instance;
-
-    private void Awake()
-    {
-        if (instance != null)
-            Destroy(gameObject);
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
+    public Slider volumeSlider;
 
     private void Start()
     {
+        float savedVolume = Statics.musicVolume;
+        source.volume = savedVolume;
+        volumeSlider.value = savedVolume;
         StartCoroutine(Music());
     }
 
@@ -35,8 +27,9 @@ public class MusicControl : MonoBehaviour
         }
     }
 
-    public void setVolume(float vol)
+    public void SetVolume(float volume)
     {
-        source.volume = vol;
+        source.volume = volume;
+        Statics.musicVolume = volume;
     }
 }
