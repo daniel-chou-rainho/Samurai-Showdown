@@ -9,7 +9,7 @@ public class GameMenuManager : MonoBehaviour
     public Transform head;
     public float spawnDistance = 2;
     public GameObject menu;
-    // public InputActionProperty showButton;
+    public InputActionProperty showButton;
 
     private UnityEngine.XR.InputDevice leftHandDevice;
     private bool menuButtonPressed = false;
@@ -31,10 +31,11 @@ public class GameMenuManager : MonoBehaviour
 
     void Update()
     {
-        // if(showButton.action.WasPressedThisFrame())
-        if (leftHandDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.menuButton, out bool isPressed))
+        menuButtonPressed = false;
+        
+        if(showButton.action.WasPressedThisFrame())
         {
-            if (isPressed && !menuButtonPressed)
+            if (!menuButtonPressed)
             {
                 menuButtonPressed = true;
 
@@ -47,7 +48,7 @@ public class GameMenuManager : MonoBehaviour
                 menu.transform.position = head.position
                     + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
             }
-            else if (!isPressed && menuButtonPressed)
+            else if (menuButtonPressed)
             {
                 menuButtonPressed = false;
             } 

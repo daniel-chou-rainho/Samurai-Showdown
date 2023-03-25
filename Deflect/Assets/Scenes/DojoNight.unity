@@ -4274,6 +4274,19 @@ MonoBehaviour:
   head: {fileID: 1869211065}
   spawnDistance: 2
   menu: {fileID: 18783144}
+  showButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Show Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: ddcda2aa-7f9a-4d3a-9ef8-0bd8a701a922
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 140807721758924640, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!4 &1246198252
 Transform:
   m_ObjectHideFlags: 0
